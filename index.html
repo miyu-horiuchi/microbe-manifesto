@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Microbial Dark Matter — A Manifesto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=IM+Fell+English:ital@0;1&family=Tangerine:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #2b1d10;
+        --ink-soft: #4a3725;
+        --paper: #f4ecd8;
+        --paper-deep: #e8dcc0;
+        --rubric: #8b3a1f;
+        --gold: #a68a3f;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+
+      body {
+        background:
+          radial-gradient(ellipse at 20% 10%, rgba(139, 100, 54, 0.10), transparent 55%),
+          radial-gradient(ellipse at 80% 85%, rgba(80, 50, 20, 0.12), transparent 60%),
+          radial-gradient(circle at 50% 50%, var(--paper), var(--paper-deep) 90%);
+        background-attachment: fixed;
+        color: var(--ink);
+        font-family: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+        font-size: 20px;
+        line-height: 1.78;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.32;
+        mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.20  0 0 0 0 0.13  0 0 0 0 0.06  0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+        z-index: 0;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background:
+          radial-gradient(circle at 12% 22%, rgba(120, 70, 30, 0.10) 0 1.5%, transparent 3%),
+          radial-gradient(circle at 88% 18%, rgba(120, 70, 30, 0.08) 0 1%, transparent 2.2%),
+          radial-gradient(circle at 75% 70%, rgba(120, 70, 30, 0.07) 0 2%, transparent 4%),
+          radial-gradient(circle at 8% 80%, rgba(120, 70, 30, 0.09) 0 1.2%, transparent 2.8%);
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 90px 64px 140px;
+      }
+
+      .page::before, .page::after {
+        content: "";
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        border: 1px solid var(--ink);
+        opacity: 0.45;
+      }
+      .page::before { top: 32px; left: 32px; border-right: none; border-bottom: none; }
+      .page::after { bottom: 60px; right: 32px; border-left: none; border-top: none; }
+
+      header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .folio {
+        font-family: "IM Fell English", serif;
+        font-style: italic;
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        color: var(--ink-soft);
+        text-transform: uppercase;
+        margin-bottom: 30px;
+      }
+
+      .mirror {
+        font-family: "Tangerine", cursive;
+        font-size: 28px;
+        color: var(--ink-soft);
+        opacity: 0.55;
+        transform: scaleX(-1);
+        display: inline-block;
+        margin-bottom: 14px;
+        letter-spacing: 0.04em;
+      }
+
+      h1.title {
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        font-size: clamp(36px, 5.4vw, 58px);
+        letter-spacing: 0.06em;
+        line-height: 1.08;
+        margin: 0 0 18px;
+        color: var(--ink);
+      }
+      h1.title em {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 400;
+        font-style: italic;
+        text-transform: lowercase;
+        letter-spacing: 0;
+        color: var(--ink-soft);
+      }
+
+      .subtitle {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 21px;
+        color: var(--ink-soft);
+        max-width: 580px;
+        margin: 0 auto;
+        line-height: 1.5;
+      }
+
+      .rule {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        margin: 32px auto 0;
+        max-width: 320px;
+        color: var(--ink-soft);
+      }
+      .rule::before, .rule::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: currentColor;
+        opacity: 0.45;
+      }
+      .rule svg { width: 22px; height: 22px; opacity: 0.7; }
+
+      .figure {
+        margin: 60px auto 70px;
+        text-align: center;
+      }
+      .figure svg {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+      }
+      .figure figcaption {
+        font-family: "IM Fell English", serif;
+        font-style: italic;
+        font-size: 15px;
+        color: var(--ink-soft);
+        margin-top: 14px;
+        letter-spacing: 0.04em;
+      }
+      .figure figcaption b {
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        color: var(--rubric);
+      }
+
+      article {
+        font-size: 20px;
+        line-height: 1.78;
+      }
+
+      article p {
+        margin: 0 0 22px;
+        text-align: justify;
+        hyphens: auto;
+      }
+
+      /* opening dropcap */
+      article > p:first-of-type::first-letter {
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        float: left;
+        font-size: 72px;
+        line-height: 0.9;
+        padding: 8px 12px 0 0;
+        color: var(--rubric);
+      }
+
+      /* lede paragraph (the opening line in italic) */
+      article p.lede {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 24px;
+        line-height: 1.5;
+        text-align: left;
+        color: var(--ink);
+        margin-bottom: 32px;
+      }
+
+      /* rhetorical-question transition lines */
+      article p.turn {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 23px;
+        line-height: 1.5;
+        text-align: left;
+        color: var(--rubric);
+        margin: 36px 0 22px;
+      }
+
+      /* one-line emphatic statement */
+      article p.stat {
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 17px;
+        letter-spacing: 0.1em;
+        text-align: center;
+        margin: 28px 0;
+        color: var(--ink);
+      }
+
+      /* organism name inline emphasis */
+      article .name {
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 0.92em;
+        letter-spacing: 0.08em;
+        color: var(--rubric);
+      }
+
+      aside.marginalia {
+        float: right;
+        clear: right;
+        width: 180px;
+        margin: 6px -130px 14px 24px;
+        font-family: "IM Fell English", serif;
+        font-style: italic;
+        font-size: 15px;
+        line-height: 1.45;
+        color: var(--ink-soft);
+        border-left: 1px solid var(--rubric);
+        padding-left: 14px;
+      }
+      aside.marginalia.left {
+        float: left;
+        clear: left;
+        margin: 6px 24px 14px -130px;
+        border-left: none;
+        border-right: 1px solid var(--rubric);
+        padding-left: 0;
+        padding-right: 14px;
+        text-align: right;
+      }
+
+      @media (max-width: 1080px) {
+        aside.marginalia, aside.marginalia.left {
+          float: none;
+          width: auto;
+          margin: 18px 0;
+        }
+      }
+
+      /* fleuron divider — thin breath between large sections */
+      .fleuron {
+        text-align: center;
+        margin: 46px 0;
+        color: var(--rubric);
+        font-family: "Cinzel", serif;
+        font-size: 18px;
+        letter-spacing: 1.5em;
+        opacity: 0.7;
+      }
+
+      blockquote.proverb {
+        font-family: "IM Fell English", serif;
+        font-style: italic;
+        font-size: 22px;
+        text-align: center;
+        max-width: 560px;
+        margin: 56px auto;
+        color: var(--ink);
+        line-height: 1.5;
+      }
+      blockquote.proverb::before { content: "" "; color: var(--rubric); }
+      blockquote.proverb::after { content: " ""; color: var(--rubric); }
+      blockquote.proverb cite {
+        display: block;
+        font-family: "Cinzel", serif;
+        font-style: normal;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        margin-top: 14px;
+        color: var(--ink-soft);
+      }
+
+      sup.cite {
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        font-size: 0.6em;
+        color: var(--rubric);
+        vertical-align: super;
+        line-height: 0;
+        margin: 0 1px;
+        letter-spacing: 0.04em;
+      }
+      sup.cite a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px dotted var(--rubric);
+      }
+      sup.cite a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+      .call {
+        margin: 70px auto 0;
+        max-width: 640px;
+        padding: 28px 32px;
+        border: 1px solid rgba(43, 29, 16, 0.4);
+        text-align: center;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 19px;
+        color: var(--ink);
+        line-height: 1.6;
+        position: relative;
+      }
+      .call::before, .call::after {
+        position: absolute;
+        font-family: "Cinzel", serif;
+        font-size: 22px;
+        color: var(--rubric);
+        opacity: 0.7;
+      }
+      .call::before { content: "❦"; top: -16px; left: 50%; transform: translateX(-50%); background: var(--paper); padding: 0 10px; }
+      .call::after { content: "❦"; bottom: -22px; left: 50%; transform: translateX(-50%); background: var(--paper); padding: 0 10px; }
+      .call a { color: var(--rubric); text-decoration: none; border-bottom: 1px solid var(--rubric); }
+
+      .footnotes {
+        margin-top: 90px;
+        padding-top: 30px;
+        border-top: 2px double rgba(43, 29, 16, 0.4);
+        font-family: "IM Fell English", serif;
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--ink-soft);
+        counter-reset: fn;
+      }
+      .footnotes h3 {
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        font-size: 13px;
+        letter-spacing: 0.22em;
+        color: var(--rubric);
+        margin: 0 0 18px;
+        text-align: center;
+      }
+      .footnotes ol { list-style: none; padding: 0; margin: 0; }
+      .footnotes li {
+        counter-increment: fn;
+        position: relative;
+        padding: 6px 0 6px 36px;
+      }
+      .footnotes li::before {
+        content: counter(fn);
+        position: absolute;
+        left: 0;
+        top: 6px;
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        font-size: 12px;
+        color: var(--rubric);
+        width: 26px;
+        text-align: right;
+        letter-spacing: 0.04em;
+      }
+      .footnotes li:target {
+        background: rgba(166, 138, 63, 0.18);
+        border-radius: 2px;
+      }
+
+      .colophon {
+        margin-top: 70px;
+        padding-top: 36px;
+        border-top: 1px solid rgba(43, 29, 16, 0.25);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        font-family: "IM Fell English", serif;
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+      .colophon h3 {
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        margin: 0 0 10px;
+        color: var(--rubric);
+      }
+      .colophon p { margin: 0 0 8px; line-height: 1.55; }
+
+      .signature {
+        margin-top: 60px;
+        text-align: right;
+        font-family: "Tangerine", cursive;
+        font-size: 44px;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .signature small {
+        display: block;
+        font-family: "IM Fell English", serif;
+        font-size: 13px;
+        color: var(--ink-soft);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-top: 6px;
+      }
+
+      @media (max-width: 720px) {
+        .page { padding: 56px 24px 90px; }
+        .colophon { grid-template-columns: 1fr; }
+        article { font-size: 18px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page">
+      <header>
+        <div class="folio">Codex · Folio I · Anno MMXXVI</div>
+        <div class="mirror">de minimis maxima</div>
+        <h1 class="title">The Microbial <em>dark matter</em></h1>
+        <p class="subtitle">
+          A manifesto on the ninety-and-nine parts of life we have read
+          but never grown.
+        </p>
+        <div class="rule">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="4" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <line x1="12" y1="2" x2="12" y2="22" />
+          </svg>
+        </div>
+      </header>
+
+      <figure class="figure">
+        <svg viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg" aria-label="Vitruvian microbe inscribed in circle and square">
+          <defs>
+            <pattern id="hatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="4" stroke="#2b1d10" stroke-width="0.4" opacity="0.55" />
+            </pattern>
+          </defs>
+          <rect x="60" y="60" width="340" height="340" fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.85" />
+          <circle cx="230" cy="230" r="170" fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.85" />
+          <g stroke="#2b1d10" stroke-width="0.6" opacity="0.5">
+            <line x1="230" y1="50" x2="230" y2="70" />
+            <line x1="230" y1="390" x2="230" y2="410" />
+            <line x1="50" y1="230" x2="70" y2="230" />
+            <line x1="390" y1="230" x2="410" y2="230" />
+          </g>
+          <path d="M 60 230 A 170 170 0 0 1 400 230" fill="none" stroke="#2b1d10" stroke-width="0.4" opacity="0.3" stroke-dasharray="2 4" />
+          <g transform="translate(230 230)">
+            <ellipse cx="0" cy="0" rx="120" ry="58" fill="url(#hatch)" stroke="#2b1d10" stroke-width="1.4" opacity="0.95" />
+            <ellipse cx="0" cy="0" rx="120" ry="58" fill="none" stroke="#2b1d10" stroke-width="1.1" transform="rotate(-14)" opacity="0.85" />
+            <path d="M -45 -8 Q -20 -22 0 -8 T 45 -6 Q 25 8 0 6 T -45 -8 Z"
+                  fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.9" />
+            <g fill="#2b1d10" opacity="0.85">
+              <circle cx="-70" cy="14" r="1.6" />
+              <circle cx="-55" cy="-22" r="1.4" />
+              <circle cx="-30" cy="22" r="1.5" />
+              <circle cx="20" cy="-24" r="1.3" />
+              <circle cx="55" cy="18" r="1.6" />
+              <circle cx="80" cy="-10" r="1.4" />
+              <circle cx="-90" cy="-4" r="1.2" />
+              <circle cx="65" cy="-28" r="1.2" />
+            </g>
+            <g fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.9">
+              <path d="M 120 0 q 30 -12 50 -2 q 20 10 40 -2 q 18 -10 36 0" />
+              <path d="M -120 0 q -30 12 -50 2 q -20 -10 -40 2 q -18 10 -36 0" />
+              <path d="M 116 -18 q 28 -22 56 -16 q 28 6 50 -10" opacity="0.6" />
+              <path d="M -116 18 q -28 22 -56 16 q -28 -6 -50 10" opacity="0.6" />
+            </g>
+            <g stroke="#2b1d10" stroke-width="0.5" opacity="0.65">
+              <line x1="-100" y1="-40" x2="-115" y2="-58" />
+              <line x1="-60" y1="-50" x2="-66" y2="-70" />
+              <line x1="-20" y1="-54" x2="-22" y2="-76" />
+              <line x1="30" y1="-52" x2="34" y2="-74" />
+              <line x1="70" y1="-46" x2="80" y2="-66" />
+              <line x1="-90" y1="42" x2="-104" y2="58" />
+              <line x1="-40" y1="50" x2="-44" y2="70" />
+              <line x1="10" y1="52" x2="12" y2="74" />
+              <line x1="55" y1="48" x2="62" y2="68" />
+              <line x1="95" y1="40" x2="108" y2="56" />
+            </g>
+          </g>
+          <text x="230" y="438" text-anchor="middle"
+                font-family="Tangerine, cursive" font-size="22"
+                fill="#4a3725" opacity="0.7"
+                transform="scale(-1 1) translate(-460 0)">
+            de animaculis invisibilibus
+          </text>
+        </svg>
+        <figcaption><b>Fig. I.</b> &nbsp; The body of the prokaryote, inscribed in circle and in square — after the manner of Vitruvius.</figcaption>
+      </figure>
+
+      <article>
+        <p class="lede">
+          There is a bacterium in your gut right now — possibly several thousand
+          species — that we have never been able to grow in a lab.
+        </p>
+
+        <p>
+          We know they exist. We have sequenced their DNA from your stool, from soil,
+          from seawater, from hot springs. They sit in databases like GTDB and the
+          Earth Microbiome Project as ghost organisms — full genomes with no organism
+          behind them. We can read every gene they have. We just cannot culture them.
+        </p>
+
+        <p class="stat">— this is true for ninety-nine percent of microbial life on earth —</p>
+
+        <p>
+          It is not for lack of trying. Microbiologists have been at this for over a
+          century. The standard procedure is depressing: take a sample, dilute it,
+          plate it on agar, try every growth medium you can think of, wait days to
+          weeks, see what grows. Most labs run this with perhaps five media. The most
+          ambitious labs run two hundred. The result is always the same — a handful of
+          fast-growing generalists colonise the plates, and everything interesting
+          stays invisible.
+        </p>
+
+        <aside class="marginalia">
+          <i>Ghost organisms:</i> a complete genome, sitting in a public database,
+          with no living cell behind it.
+        </aside>
+
+        <p>
+          Some of what we are missing. <span class="name">Christensenella</span>, the
+          genus most strongly associated with leanness in human gut microbiome studies:
+          six species available from culture collections, eight hundred and forty-three
+          known genomes in the family, and we have grown less than one percent.<sup class="cite"><a href="#fn1">1</a></sup>
+          <span class="name">Patescibacteria</span>, an entire bacterial superphylum
+          that lives by attaching to the surface of other bacteria — discovered through
+          metagenomic sequencing in 2015, almost none cultured, their lifestyle so
+          unusual that nobody is confident standard methods will ever work on them.<sup class="cite"><a href="#fn2">2</a></sup>
+          <span class="name">Asgard archaea</span>, the closest living relatives of the
+          cell type that became all complex life — the first one,
+          <i>Prometheoarchaeum syntrophicum</i>, finally cultured in 2019 after twelve
+          years of trying with a single sample.<sup class="cite"><a href="#fn3">3</a></sup>
+          And the <span class="name">deep biosphere</span>, bacteria living kilometres
+          below the Earth's surface, in rock pores, with doubling times measured in
+          thousands of years: sequenced, but not a single one grown.<sup class="cite"><a href="#fn4">4</a></sup>
+        </p>
+
+        <p>
+          These are not edge cases. These are the rule. The cultivable microbes — the
+          <i>E. coli</i>, the <i>Bacillus</i>, the lactobacilli upon which we have built
+          a hundred years of microbiology — are weird, fast-growing outliers that
+          happened to tolerate the conditions a human in a lab coat decided were
+          "standard."
+        </p>
+
+        <div class="fleuron">❧ ❦ ❧</div>
+
+        <p class="turn">Why does this matter?</p>
+
+        <p>
+          Because every working antibiotic we have was discovered from cultivable
+          microbes. Penicillin came from <i>Penicillium</i>, vancomycin from
+          <i>Streptomyces</i>, a hundred others from a handful of soil genera. The drug
+          discovery pipeline is running dry. We have squeezed the cultivable one
+          percent for everything they have, and resistance is winning. The next
+          generation of antibiotics, almost by definition, has to come from the
+          uncultured ninety-nine.
+        </p>
+
+        <aside class="marginalia left">
+          <i>Note in the margin:</i> we can see the genes for the antibiotics — we
+          just cannot grow the microbes that make them.
+        </aside>
+
+        <p>
+          Here is the surprise: we know these uncultured organisms make novel compounds.
+          Metagenomic mining — reading the DNA without growing the organism — has shown
+          they encode biosynthetic pathways for hundreds of thousands of small molecules
+          we have never characterised.<sup class="cite"><a href="#fn5">5</a></sup> We can
+          see the genes for the antibiotics. We just cannot grow the microbes to make them.
+        </p>
+
+        <p>
+          The same is true for probiotics. The next generation of microbiome
+          therapeutics — drugs based on actual gut bacteria, not yogurt — is blocked by
+          cultivability. Seres Therapeutics brought an FDA-approved microbiome drug to
+          market;<sup class="cite"><a href="#fn6">6</a></sup> their pipeline is
+          constrained by what they can grow. The next breakthrough probiotic, the next
+          <i>Akkermansia</i> — itself only cultured in 2004, and now a billion-dollar
+          market opportunity<sup class="cite"><a href="#fn7">7</a></sup> — almost
+          certainly already exists as a sequence in someone's database. We just cannot
+          get it into a flask.
+        </p>
+
+        <p>
+          The same is true for environmental remediation. Microbes that eat plastic,
+          microbes that fix nitrogen without fertiliser, microbes that capture carbon.
+          The actual best ones — the ones evolution spent four billion years optimising
+          — are mostly uncultured.
+        </p>
+
+        <blockquote class="proverb">
+          Ostinato rigore — by obstinate rigour.
+          <cite>— after the notebooks of L. da V.</cite>
+        </blockquote>
+
+        <p class="turn">So here is the question: what would it take to grow them?</p>
+
+        <p>
+          The current approach is brute force. Try more media. Screen more conditions.
+          Hope something works. Some labs run two hundred conditions per sample.
+          Pacific Northwest National Lab runs more than a thousand. None of this scales.
+          Each condition takes weeks, requires expert microbiologists, and most attempts
+          fail.
+        </p>
+
+        <p>
+          What has changed in the last five years is that we now have foundation models
+          that can read DNA and predict function. ESM-2 reads proteins and predicts
+          structure. Evo 2 reads genomes and predicts mutational effects. These models
+          contain a vast amount of implicit biological knowledge, learned from hundreds
+          of millions of sequences.
+        </p>
+
+        <p>
+          The bet I am making is to combine those models with a closed wet-lab loop.
+          Predict cultivation conditions from genome data. Test the predictions in the
+          lab. Feed the results back to retrain the model. Every experiment teaches the
+          system something. Every success unlocks a new organism. The data compounds
+          with every cycle, and <em>the data is the moat</em>.
+        </p>
+
+        <div class="fleuron">❧ ❦ ❧</div>
+
+        <p>
+          This is hard for several reasons. The labels are bad — existing cultivation
+          databases (BacDive, ATCC, DSMZ) record what worked, not what failed; a working
+          ML pipeline needs both, and we will have to generate the negative data
+          ourselves. The same organism behaves differently in different communities —
+          a bacterium that grows in a defined medium with one neighbour may refuse to
+          grow alone, so cultivation is not really a property of an organism, but of an
+          organism plus its context, and most existing models ignore this. Wet-lab
+          cycles are slow — a single round of cultivation is one to four weeks, so to
+          learn fast every experiment must be maximally informative, which means active
+          learning and Bayesian optimisation choosing what to run next, weighted by
+          information per dollar. And frontier labs (Arc, Insitro, Recursion) could
+          build this too — so the moat is not the model, it is the loop, the
+          proprietary data we generate by running experiments. The first team to close
+          that loop credibly accumulates a data advantage that compounds monthly.
+        </p>
+
+        <p>
+          Most pharmaceuticals fail. Most biology is harder than it looks. This will
+          probably fail too. But the upside is large enough that even partial success
+          matters. Every previously uncultured organism we grow is a potentially useful
+          new tool. New antibiotics. New probiotics. New enzymes. New chemistry.
+        </p>
+
+        <p>
+          And if it works at scale, the implication is not subtle. The microbial
+          ninety-nine percent is the largest unexplored library of useful biology on
+          Earth. Unlocking it is the closest thing biology has to <em>computing the
+          missing dark matter and seeing what is actually out there</em>.
+        </p>
+
+        <p class="stat">— that is the bet —</p>
+
+        <p>
+          In a few years, hopefully, I will be writing the postmortem on this. Either
+          <i>"here is why it failed and what we learned,"</i> or <i>"here is a new genus
+          we just cultured, and the antibiotic it makes."</i> Either way, somebody has
+          to try.
+        </p>
+
+        <blockquote class="proverb">
+          Sapere vedere — to know how to see.
+        </blockquote>
+      </article>
+
+      <div class="call">
+        If you would like to help — wet-lab partnership, advisor role, environmental
+        samples from weird places, or simply an idea — please
+        <a href="mailto:miyuhpenn@gmail.com">reach out</a>.
+      </div>
+
+      <div class="signature">
+        Miyu Horiuchi
+        <small>Author of this folio · Anno MMXXVI</small>
+      </div>
+
+      <section class="footnotes">
+        <h3>Notes &amp; Sources</h3>
+        <ol>
+          <li id="fn1">
+            BacDive cultivation records vs. GTDB genome counts for family
+            <i>Christensenellaceae</i>, as of 2024.
+          </li>
+          <li id="fn2">
+            Brown et al., <i>Nature</i>, 2015 — on the unusual biology of candidate
+            phyla radiation bacteria.
+          </li>
+          <li id="fn3">
+            Imachi et al., <i>Nature</i>, 2020 — isolation of an archaeon at the
+            prokaryote–eukaryote interface; twelve years of cultivation work.
+          </li>
+          <li id="fn4">
+            Lloyd et al., <i>Nature Microbiology</i>, 2018 — phylogenetically novel
+            uncultured microbial cells dominate Earth microbiomes.
+          </li>
+          <li id="fn5">
+            Nayfach et al., <i>Nature</i>, 2021 — a genomic catalogue of Earth's
+            microbiomes, 52,515 metagenome-assembled genomes.
+          </li>
+          <li id="fn6">
+            Seres Therapeutics SER-109 (Vowst), FDA-approved for recurrent
+            <i>C. difficile</i> infection, 2023.
+          </li>
+          <li id="fn7">
+            Derrien et al., <i>Int. J. Syst. Evol. Microbiol.</i>, 2004 —
+            <i>Akkermansia muciniphila</i> gen. nov., sp. nov.
+          </li>
+        </ol>
+      </section>
+
+      <footer class="colophon">
+        <div>
+          <h3>Colophon</h3>
+          <p>
+            Set in Cinzel, Cormorant Garamond, IM Fell English, and Tangerine. Composed
+            in a single folio of HTML, after the manner of the Renaissance broadside.
+          </p>
+        </div>
+        <div>
+          <h3>On the Title</h3>
+          <p>
+            <i>Dark matter</i> here is borrowed from cosmology — that which cannot be
+            observed directly, yet whose presence is felt in everything we can measure.
+            The microbial dark matter is, in this sense, more tractable: it can be read,
+            even where it cannot yet be grown.
+          </p>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
