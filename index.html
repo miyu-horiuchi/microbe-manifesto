@@ -445,54 +445,168 @@
       </header>
 
       <figure class="figure">
-        <svg viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg" aria-label="Vitruvian microbe inscribed in circle and square">
+        <svg viewBox="0 0 580 540" xmlns="http://www.w3.org/2000/svg" aria-label="Anatomical study of a bacterium, after the manner of Leonardo da Vinci">
           <defs>
             <pattern id="hatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
-              <line x1="0" y1="0" x2="0" y2="4" stroke="#2b1d10" stroke-width="0.4" opacity="0.55" />
+              <line x1="0" y1="0" x2="0" y2="4" stroke="#2b1d10" stroke-width="0.35" opacity="0.5" />
+            </pattern>
+            <pattern id="hatch2" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(135)">
+              <line x1="0" y1="0" x2="0" y2="4" stroke="#2b1d10" stroke-width="0.3" opacity="0.32" />
             </pattern>
           </defs>
-          <rect x="60" y="60" width="340" height="340" fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.85" />
-          <circle cx="230" cy="230" r="170" fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.85" />
-          <g stroke="#2b1d10" stroke-width="0.6" opacity="0.5">
-            <line x1="230" y1="50" x2="230" y2="70" />
-            <line x1="230" y1="390" x2="230" y2="410" />
-            <line x1="50" y1="230" x2="70" y2="230" />
-            <line x1="390" y1="230" x2="410" y2="230" />
+
+          <!-- main study area: square + inscribed circle -->
+          <g transform="translate(60 40)">
+            <rect x="60" y="60" width="340" height="340" fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.85" />
+            <circle cx="230" cy="230" r="170" fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.85" />
+
+            <!-- compass tick marks -->
+            <g stroke="#2b1d10" stroke-width="0.6" opacity="0.5">
+              <line x1="230" y1="50" x2="230" y2="70" />
+              <line x1="230" y1="390" x2="230" y2="410" />
+              <line x1="50" y1="230" x2="70" y2="230" />
+              <line x1="390" y1="230" x2="410" y2="230" />
+            </g>
+
+            <!-- faint construction axes through center -->
+            <g stroke="#2b1d10" stroke-width="0.3" opacity="0.25" stroke-dasharray="3 5">
+              <line x1="60" y1="230" x2="400" y2="230" />
+              <line x1="230" y1="60" x2="230" y2="400" />
+            </g>
+
+            <!-- golden-ratio rectangle markings -->
+            <g stroke="#2b1d10" stroke-width="0.3" opacity="0.18" stroke-dasharray="2 3">
+              <line x1="320" y1="130" x2="320" y2="330" />
+              <line x1="140" y1="130" x2="140" y2="330" />
+            </g>
+
+            <!-- construction arc (lower half) -->
+            <path d="M 60 230 A 170 170 0 0 1 400 230" fill="none" stroke="#2b1d10" stroke-width="0.4" opacity="0.3" stroke-dasharray="2 4" />
+
+            <!-- bacterium body, centered, with double pose and cross hatch -->
+            <g transform="translate(230 230)">
+              <!-- second-pose ellipse, faint, rotated -->
+              <ellipse cx="0" cy="0" rx="120" ry="58" fill="none" stroke="#2b1d10" stroke-width="0.8" transform="rotate(-14)" opacity="0.45" />
+              <!-- main body fill: cross-hatch -->
+              <ellipse cx="0" cy="0" rx="120" ry="58" fill="url(#hatch)" stroke="none" />
+              <ellipse cx="0" cy="0" rx="120" ry="58" fill="url(#hatch2)" stroke="none" />
+              <!-- main outline (sketchy double-line) -->
+              <ellipse cx="0" cy="0" rx="120" ry="58" fill="none" stroke="#2b1d10" stroke-width="1.4" opacity="0.95" />
+              <ellipse cx="0" cy="-1.5" rx="120" ry="58" fill="none" stroke="#2b1d10" stroke-width="0.5" opacity="0.45" />
+
+              <!-- nucleoid -->
+              <path d="M -45 -8 Q -20 -22 0 -8 T 45 -6 Q 25 8 0 6 T -45 -8 Z"
+                    fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.9" />
+
+              <!-- ribosomes -->
+              <g fill="#2b1d10" opacity="0.85">
+                <circle cx="-70" cy="14" r="1.6" />
+                <circle cx="-55" cy="-22" r="1.4" />
+                <circle cx="-30" cy="22" r="1.5" />
+                <circle cx="20" cy="-24" r="1.3" />
+                <circle cx="55" cy="18" r="1.6" />
+                <circle cx="80" cy="-10" r="1.4" />
+                <circle cx="-90" cy="-4" r="1.2" />
+                <circle cx="65" cy="-28" r="1.2" />
+              </g>
+
+              <!-- flagella -->
+              <g fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.9">
+                <path d="M 120 0 q 30 -12 50 -2 q 20 10 40 -2 q 18 -10 36 0" />
+                <path d="M -120 0 q -30 12 -50 2 q -20 -10 -40 2 q -18 10 -36 0" />
+                <path d="M 116 -18 q 28 -22 56 -16 q 28 6 50 -10" opacity="0.55" />
+                <path d="M -116 18 q -28 22 -56 16 q -28 -6 -50 10" opacity="0.55" />
+              </g>
+
+              <!-- pili -->
+              <g stroke="#2b1d10" stroke-width="0.5" opacity="0.65">
+                <line x1="-100" y1="-40" x2="-115" y2="-58" />
+                <line x1="-60" y1="-50" x2="-66" y2="-70" />
+                <line x1="-20" y1="-54" x2="-22" y2="-76" />
+                <line x1="30" y1="-52" x2="34" y2="-74" />
+                <line x1="70" y1="-46" x2="80" y2="-66" />
+                <line x1="-90" y1="42" x2="-104" y2="58" />
+                <line x1="-40" y1="50" x2="-44" y2="70" />
+                <line x1="10" y1="52" x2="12" y2="74" />
+                <line x1="55" y1="48" x2="62" y2="68" />
+                <line x1="95" y1="40" x2="108" y2="56" />
+              </g>
+            </g>
+
+            <!-- Anatomical labels with leader lines (italic Cormorant) -->
+            <g font-family="Cormorant Garamond, serif" font-style="italic" font-size="13" fill="#4a3725">
+              <!-- flagellum (right) -->
+              <line x1="380" y1="240" x2="408" y2="246" stroke="#4a3725" stroke-width="0.5" opacity="0.7" />
+              <text x="412" y="250">flagellum</text>
+
+              <!-- nucleoid (top center) -->
+              <line x1="232" y1="220" x2="232" y2="118" stroke="#4a3725" stroke-width="0.5" opacity="0.7" />
+              <text x="232" y="112" text-anchor="middle">nucleoid</text>
+
+              <!-- ribosome (lower left) -->
+              <line x1="178" y1="252" x2="120" y2="298" stroke="#4a3725" stroke-width="0.5" opacity="0.7" />
+              <text x="116" y="312" text-anchor="end">ribosome</text>
+
+              <!-- pilus (top left) -->
+              <line x1="170" y1="180" x2="120" y2="138" stroke="#4a3725" stroke-width="0.5" opacity="0.7" />
+              <text x="116" y="132" text-anchor="end">pilus</text>
+
+              <!-- membrane (lower right) -->
+              <line x1="320" y1="270" x2="360" y2="312" stroke="#4a3725" stroke-width="0.5" opacity="0.7" />
+              <text x="364" y="324">membrane</text>
+            </g>
           </g>
-          <path d="M 60 230 A 170 170 0 0 1 400 230" fill="none" stroke="#2b1d10" stroke-width="0.4" opacity="0.3" stroke-dasharray="2 4" />
-          <g transform="translate(230 230)">
-            <ellipse cx="0" cy="0" rx="120" ry="58" fill="url(#hatch)" stroke="#2b1d10" stroke-width="1.4" opacity="0.95" />
-            <ellipse cx="0" cy="0" rx="120" ry="58" fill="none" stroke="#2b1d10" stroke-width="1.1" transform="rotate(-14)" opacity="0.85" />
-            <path d="M -45 -8 Q -20 -22 0 -8 T 45 -6 Q 25 8 0 6 T -45 -8 Z"
-                  fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.9" />
-            <g fill="#2b1d10" opacity="0.85">
-              <circle cx="-70" cy="14" r="1.6" />
-              <circle cx="-55" cy="-22" r="1.4" />
-              <circle cx="-30" cy="22" r="1.5" />
-              <circle cx="20" cy="-24" r="1.3" />
-              <circle cx="55" cy="18" r="1.6" />
-              <circle cx="80" cy="-10" r="1.4" />
-              <circle cx="-90" cy="-4" r="1.2" />
-              <circle cx="65" cy="-28" r="1.2" />
+
+          <!-- Detail study (top-right): magnified flagellum motor -->
+          <g transform="translate(488 70)">
+            <text x="0" y="-12" font-family="Cormorant Garamond, serif" font-style="italic" font-size="11" fill="#4a3725">flagellum motor</text>
+            <circle cx="30" cy="30" r="40" fill="none" stroke="#2b1d10" stroke-width="0.5" opacity="0.4" />
+            <circle cx="30" cy="30" r="14" fill="url(#hatch)" stroke="#2b1d10" stroke-width="0.8" opacity="0.85" />
+            <circle cx="30" cy="30" r="8" fill="none" stroke="#2b1d10" stroke-width="0.6" opacity="0.85" />
+            <circle cx="30" cy="30" r="3" fill="#2b1d10" opacity="0.85" />
+            <line x1="30" y1="30" x2="30" y2="-2" stroke="#2b1d10" stroke-width="0.6" opacity="0.7" />
+            <line x1="30" y1="-2" x2="34" y2="-12" stroke="#2b1d10" stroke-width="0.5" opacity="0.5" />
+          </g>
+
+          <!-- Detail study (bottom-right): cell wall cross-section -->
+          <g transform="translate(488 360)">
+            <text x="0" y="-10" font-family="Cormorant Garamond, serif" font-style="italic" font-size="11" fill="#4a3725">cell wall</text>
+            <line x1="0" y1="6" x2="70" y2="6" stroke="#2b1d10" stroke-width="0.7" opacity="0.85" />
+            <line x1="0" y1="14" x2="70" y2="14" stroke="#2b1d10" stroke-width="0.7" opacity="0.85" />
+            <g stroke="#2b1d10" stroke-width="0.4" opacity="0.55">
+              <line x1="6" y1="6" x2="6" y2="14" />
+              <line x1="14" y1="6" x2="14" y2="14" />
+              <line x1="22" y1="6" x2="22" y2="14" />
+              <line x1="30" y1="6" x2="30" y2="14" />
+              <line x1="38" y1="6" x2="38" y2="14" />
+              <line x1="46" y1="6" x2="46" y2="14" />
+              <line x1="54" y1="6" x2="54" y2="14" />
+              <line x1="62" y1="6" x2="62" y2="14" />
             </g>
-            <g fill="none" stroke="#2b1d10" stroke-width="1" opacity="0.9">
-              <path d="M 120 0 q 30 -12 50 -2 q 20 10 40 -2 q 18 -10 36 0" />
-              <path d="M -120 0 q -30 12 -50 2 q -20 -10 -40 2 q -18 10 -36 0" />
-              <path d="M 116 -18 q 28 -22 56 -16 q 28 6 50 -10" opacity="0.6" />
-              <path d="M -116 18 q -28 22 -56 16 q -28 -6 -50 10" opacity="0.6" />
+            <line x1="0" y1="22" x2="70" y2="22" stroke="#2b1d10" stroke-width="0.4" opacity="0.5" stroke-dasharray="2 2" />
+          </g>
+
+          <!-- Detail study (bottom-left): DNA helix -->
+          <g transform="translate(20 370)">
+            <text x="0" y="-10" font-family="Cormorant Garamond, serif" font-style="italic" font-size="11" fill="#4a3725">DNA</text>
+            <path d="M 8 0 Q 20 12 8 24 Q -4 36 8 48 Q 20 60 8 72" fill="none" stroke="#2b1d10" stroke-width="0.8" opacity="0.85" />
+            <path d="M 8 0 Q -4 12 8 24 Q 20 36 8 48 Q -4 60 8 72" fill="none" stroke="#2b1d10" stroke-width="0.8" opacity="0.85" />
+            <g stroke="#2b1d10" stroke-width="0.4" opacity="0.5">
+              <line x1="2" y1="6" x2="14" y2="6" />
+              <line x1="2" y1="18" x2="14" y2="18" />
+              <line x1="2" y1="30" x2="14" y2="30" />
+              <line x1="2" y1="42" x2="14" y2="42" />
+              <line x1="2" y1="54" x2="14" y2="54" />
+              <line x1="2" y1="66" x2="14" y2="66" />
             </g>
-            <g stroke="#2b1d10" stroke-width="0.5" opacity="0.65">
-              <line x1="-100" y1="-40" x2="-115" y2="-58" />
-              <line x1="-60" y1="-50" x2="-66" y2="-70" />
-              <line x1="-20" y1="-54" x2="-22" y2="-76" />
-              <line x1="30" y1="-52" x2="34" y2="-74" />
-              <line x1="70" y1="-46" x2="80" y2="-66" />
-              <line x1="-90" y1="42" x2="-104" y2="58" />
-              <line x1="-40" y1="50" x2="-44" y2="70" />
-              <line x1="10" y1="52" x2="12" y2="74" />
-              <line x1="55" y1="48" x2="62" y2="68" />
-              <line x1="95" y1="40" x2="108" y2="56" />
-            </g>
+          </g>
+
+          <!-- Detail study (top-left): scale bar -->
+          <g transform="translate(20 70)">
+            <text x="0" y="-8" font-family="Cormorant Garamond, serif" font-style="italic" font-size="11" fill="#4a3725">scale: 1 μm</text>
+            <line x1="0" y1="0" x2="40" y2="0" stroke="#2b1d10" stroke-width="1" opacity="0.85" />
+            <line x1="0" y1="-3" x2="0" y2="3" stroke="#2b1d10" stroke-width="1" opacity="0.85" />
+            <line x1="40" y1="-3" x2="40" y2="3" stroke="#2b1d10" stroke-width="1" opacity="0.85" />
           </g>
         </svg>
         <figcaption><b>Fig. I.</b> &nbsp; The potential is unimaginable if we discover the other 99%.</figcaption>
