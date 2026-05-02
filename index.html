@@ -630,17 +630,40 @@
         </p>
 
         <p>
-          And beyond sequence, there is the world model. Foundation models that
-          incorporate molecular dynamics into ML, learning not just what a protein
-          looks like, but how it moves, folds, and interacts in time. Sequence gives
-          you the parts list. Dynamics gives you the runtime.
+          And beyond sequence, there is the world model. In materials chemistry this
+          is already real: MACE-MP-0 is a foundation neural potential trained on the
+          Materials Project at near-DFT accuracy, running stable molecular dynamics on
+          solids, liquids, and battery cells.<sup class="cite"><a href="#fn8">8</a></sup>
+          In biology the equivalent is younger but arriving. AlphaFlow fine-tunes
+          AlphaFold under a flow-matching objective so the output is a conformational
+          ensemble rather than a single structure.<sup class="cite"><a href="#fn9">9</a></sup>
+          BioEmu, trained on over 200 milliseconds of aggregated MD, generates thousands
+          of protein equilibrium conformations per hour and predicts free energies to
+          roughly 1 kcal/mol.<sup class="cite"><a href="#fn10">10</a></sup> MDGen models
+          full molecular dynamics trajectories directly, up to 100,000 frames at a
+          time.<sup class="cite"><a href="#fn11">11</a></sup> The training substrate is
+          ATLAS, an open corpus of 1,390 proteins each simulated in triplicate for 100
+          nanoseconds.<sup class="cite"><a href="#fn12">12</a></sup> Sequence gives you
+          the parts list. Dynamics gives you the runtime.
         </p>
 
         <p>
-          The bet I am making is to combine those models with a closed wet-lab loop.
-          Predict cultivation conditions from genome data. Test the predictions in the
-          lab. Feed the results back to retrain the model. Every experiment teaches the
-          system something. Every success unlocks a new organism. The data compounds
+          None of this yet predicts cultivation conditions for an uncultured microbe.
+          The pieces sit in different communities: machine-learned interatomic
+          potentials in materials,<sup class="cite"><a href="#fn8">8</a></sup> protein
+          ensemble generators in computational biology,<sup class="cite"><a href="#fn9">9</a></sup>
+          genome-scale metabolic networks at 247,000-microbe
+          scale,<sup class="cite"><a href="#fn13">13</a></sup> and amino-acid-composition
+          models that already predict oxygen tolerance, optimum temperature, and
+          salinity from genome alone.<sup class="cite"><a href="#fn14">14</a></sup> None
+          of them individually is enough.
+        </p>
+
+        <p>
+          The bet is to wire them together with a closed wet-lab loop. Predict
+          cultivation conditions from genome and dynamics. Test the predictions in the
+          lab. Feed the results back to retrain the models. Every experiment teaches
+          the system something. Every success unlocks a new organism. The data compounds
           with every cycle, and <em>the data is the moat</em>.
         </p>
 
@@ -727,6 +750,34 @@
           <li id="fn7">
             Derrien et al., <i>Int. J. Syst. Evol. Microbiol.</i>, 2004.
             <i>Akkermansia muciniphila</i> gen. nov., sp. nov.
+          </li>
+          <li id="fn8">
+            Batatia et al., <i>J. Chem. Phys.</i>, 2024. A foundation model for
+            atomistic materials chemistry (MACE-MP-0). arXiv:2401.00096.
+          </li>
+          <li id="fn9">
+            Jing, Berger, Jaakkola. <i>ICML</i>, 2024. AlphaFold meets flow matching
+            for generating protein ensembles. arXiv:2402.04845.
+          </li>
+          <li id="fn10">
+            Lewis et al., <i>Science</i>, 2025. Scalable emulation of protein
+            equilibrium ensembles with generative deep learning (BioEmu).
+          </li>
+          <li id="fn11">
+            Jing, Stark, Jaakkola, Berger. <i>NeurIPS</i>, 2024. Generative modeling
+            of molecular dynamics trajectories (MDGen). arXiv:2409.17808.
+          </li>
+          <li id="fn12">
+            Vander Meersche et al., <i>Nucleic Acids Research</i>, 2024. ATLAS: protein
+            flexibility description from atomistic molecular dynamics simulations.
+          </li>
+          <li id="fn13">
+            Heinken et al., <i>Cell Systems</i>, 2025. A genome-scale metabolic
+            reconstruction resource of 247,092 diverse human microbes (APOLLO).
+          </li>
+          <li id="fn14">
+            Weissman et al., bioRxiv, 2024. Predicting microbial growth conditions
+            from amino acid composition. doi:10.1101/2024.03.22.586313.
           </li>
         </ol>
       </section>
